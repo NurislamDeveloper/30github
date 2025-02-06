@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+          TextButton(onPressed: () => exit(0), child: const Text('Exit'),)
         ],
       ),
     );
