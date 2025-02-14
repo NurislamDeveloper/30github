@@ -1,12 +1,20 @@
 import 'package:hive/hive.dart';
-part 'person.g.dart';
 
-@HiveType(typeId: 1)
+part 'person.g.dart'; // Generated file for Hive
+
+@HiveType(typeId: 1) // Ensure this is unique and consistent
 class Person {
-  Person({required this.name, required this.age});
   @HiveField(0)
-  String name;
+  final String name;
 
   @HiveField(1)
-  int age;
+  final int age;
+
+
+
+  Person({
+    required this.name,
+    required this.age,
+ 
+  });
 }

@@ -4,6 +4,7 @@ import 'package:hive_first_lesson/person.dart';
 import 'package:hive_flutter/adapters.dart';
 
 void main() async {
+
   await Hive.initFlutter();
   Hive.registerAdapter(PersonAdapter());
   boxPersons = await Hive.openBox<Person>('personBox');
@@ -32,6 +33,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final nameController = TextEditingController();
   final ageController = TextEditingController();
+  final cityController = TextEditingController();
+  final phoneController = TextEditingController();
+  final addressController = TextEditingController();
+  final workController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
           const SizedBox(height: 10),
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 200, // Fixed height for better UI
+            height: 200,
             child: Image.network(
-              'https://pbs.twimg.com/media/F8ouzVyX0AAdEBd.jpg:large',
+              'https://blog.codemagic.io/uploads/covers/codemagic-blog-header-flutter-2.png',
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return const Center(
@@ -64,39 +69,47 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     TextField(
-                      controller: nameController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Enter your name',
-                      ),
-                    ),
+                        controller: nameController,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter your name')),
                     const SizedBox(height: 10),
                     TextField(
-                      controller: ageController,
-                      keyboardType: TextInputType.number, // Ensures only numbers
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Enter your age',
-                      ),
-                    ),
+                        controller: ageController,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter your age')),
                     const SizedBox(height: 10),
+                    
                     TextButton(
                       onPressed: () {
                         setState(() {
                           try {
-                            int age = int.parse(ageController.text);
-                            boxPersons.put(
-                              'key_${nameController.text}',
-                              Person(
-                                name: nameController.text,
-                                age: age,
-                              ),
-                            );
+                            int? age = int.tryParse(ageController.text);
+                            int? phoneNumber = int.tryParse(phoneController.text);
+
+                            if (age == null || phoneNumber == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Please enter a valid age and phone number')),
+                              );
+                              return;
+                            }
+
+                            boxPersons.add(Person(
+                              name: nameController.text,
+                              age: age,
+                          
+                            ));
+
+                            // Clear the text fields after submission
+                            nameController.clear();
+                            ageController.clear();
+                           
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Please enter a valid age'),
-                              ),
+                              SnackBar(content: Text('Error: ${e.toString()}')),
                             );
                           }
                         });
@@ -115,27 +128,31 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Card(
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: boxPersons.isEmpty
-                      ? const Center(child: Text('No data available'))
-                      : ListView.builder(
-                          itemCount: boxPersons.length,
-                          itemBuilder: (context, index) {
-                            Person person = boxPersons.getAt(index);
-                            return ListTile(
-                              leading: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    boxPersons.deleteAt(index);
-                                  });
-                                },
-                                icon: const Icon(Icons.remove),
-                              ),
-                              title: Text(person.name),
-                              subtitle: const Text('Name'),
-                              trailing: Text('Age: ${person.age}'),
-                            );
+                  child: ListView.builder(
+                    itemCount: boxPersons.length,
+                    itemBuilder: (context, index) {
+                      Person person = boxPersons.getAt(index);
+                      return ListTile(
+                        leading: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              boxPersons.deleteAt(index);
+                            });
                           },
+                          icon: const Icon(Icons.remove),
                         ),
+                        title: Text(person.name),
+                        subtitle: const Text('Name'),
+                        trailing: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Age: ${person.age}'),
+                          
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

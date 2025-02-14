@@ -19,17 +19,20 @@ class PersonAdapter extends TypeAdapter<Person> {
     return Person(
       name: fields[0] as String,
       age: fields[1] as int,
+   
     );
   }
 
   @override
   void write(BinaryWriter writer, Person obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.age);
+      ..write(obj.age)
+      ..writeByte(2);
+   
   }
 
   @override
