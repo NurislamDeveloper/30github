@@ -30,14 +30,14 @@ class _LoginScreenState extends State<LoginScreen> {
               hintext: 'Enter your name ',
             ),
             const SizedBox(
-              height: 10.0,
+              height: 30.0,
             ),
             CustomTextField(
               onChanged: (value) {},
               hintext: 'Enter your name ',
             ),
             const SizedBox(
-              height: 20.0,
+              height: 40.0,
             ),
             RoundedButton(
               text: 'Log In',

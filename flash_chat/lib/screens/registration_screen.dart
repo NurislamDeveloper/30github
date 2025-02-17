@@ -1,3 +1,4 @@
+import 'package:flash_chat/screens/widgets/cutsom_text_field.dart';
 import 'package:flash_chat/screens/widgets/image_ligt.dart';
 import 'package:flash_chat/screens/widgets/routed_button.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -23,16 +24,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const SizedBox(
               height: 25.0,
             ),
-            const TextField(),
-            const SizedBox(
-              height: 10.0,
+            CustomTextField(
+              onChanged: (value) {},
+              hintext: 'Enter your name ',
             ),
-            const TextField(),
             const SizedBox(
-              height: 20.0,
+              height: 30.0,
+            ),
+            CustomTextField(
+              onChanged: (value) {},
+              hintext: 'Enter your name ',
+            ),
+            const SizedBox(
+              height: 40.0,
             ),
             RoundedButton(
-              text: 'Log In',
+              text: 'Registration',
               color: Colors.blueAccent,
               onPressed: () {},
             ),

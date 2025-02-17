@@ -7,16 +7,43 @@ import 'package:flutter/material.dart';
 class WellcomeScreen extends StatefulWidget {
   const WellcomeScreen({super.key});
   static const String id = 'wellcome_screen';
-  
+
   @override
   State<WellcomeScreen> createState() => _WellcomeScreenState();
 }
 
-class _WellcomeScreenState extends State<WellcomeScreen> {
+class _WellcomeScreenState extends State<WellcomeScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController conrtoller;
+  late Animation animation;
+
+  @override
+  void initState() {
+    super.initState();
+    conrtoller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+
+    animation = ColorTween(begin: Colors.blueGrey, end: Colors.white).animate(conrtoller);
+    conrtoller.forward();
+
+    conrtoller.addListener(() {
+      setState(() {});
+      print(animation.value);
+    });
+  }
+
+  @override
+  void dispose() {
+    conrtoller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: animation.value,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -29,7 +56,6 @@ class _WellcomeScreenState extends State<WellcomeScreen> {
               text: 'Log In',
               color: Colors.lightBlueAccent,
               onPressed: () {
-
                 // Navigate to Login Screen
                 Navigator.pushNamed(context, LoginScreen.id);
               },

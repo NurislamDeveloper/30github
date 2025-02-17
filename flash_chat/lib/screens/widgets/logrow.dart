@@ -22,6 +22,7 @@ class LogoRow extends StatelessWidget {
             fontSize: 45.0,
             fontWeight: FontWeight.w900,
             color: Colors.black,
+            
           ),
         ),
       ],
