@@ -1,7 +1,8 @@
 import 'package:flash_chat/screens/widgets/cutsom_text_field.dart';
 import 'package:flash_chat/screens/widgets/image_ligt.dart';
-import 'package:flash_chat/screens/widgets/routed_button.dart';
+import 'package:flash_chat/screens/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

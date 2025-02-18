@@ -1,6 +1,6 @@
 import 'package:flash_chat/screens/widgets/cutsom_text_field.dart';
 import 'package:flash_chat/screens/widgets/image_ligt.dart';
-import 'package:flash_chat/screens/widgets/routed_button.dart';
+import 'package:flash_chat/screens/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {

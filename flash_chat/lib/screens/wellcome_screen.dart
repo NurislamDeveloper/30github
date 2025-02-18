@@ -1,7 +1,7 @@
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flash_chat/screens/widgets/logrow.dart';
-import 'package:flash_chat/screens/widgets/routed_button.dart';
+import 'package:flash_chat/screens/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 
 class WellcomeScreen extends StatefulWidget {
@@ -30,7 +30,6 @@ class _WellcomeScreenState extends State<WellcomeScreen>
 
     conrtoller.addListener(() {
       setState(() {});
-      print(animation.value);
     });
   }
 
