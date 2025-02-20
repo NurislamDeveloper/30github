@@ -3,13 +3,16 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
-    id 'com.google.gms.google-services'
+    id 'com.google.gms.google-services' // Add this line if you're using Firebase
 }
 
 android {
-    namespace = "com.example.flash_chat"
+    namespace = "com.nurislam.flash_chat"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+
+        compileSdkVersion 34 // Ensure this line is correct
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -26,7 +29,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        targetSdkVersion 34  // Update this to 34
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
@@ -45,4 +48,6 @@ flutter {
 }
 dependencies {
  implementation platform('com.google.firebase:firebase-bom:33.9.0')
+ implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22"
+ implementation 'androidx.core:core-ktx:1.10.1' // Update to a stable version
 }

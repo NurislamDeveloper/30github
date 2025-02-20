@@ -1,25 +1,31 @@
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 34 // Update to the required SDK version
+
+    namespace "com.nurislam.flash_chat" // Your package name
+
+    defaultConfig {
+        applicationId "com.nurislam.flash_chat" // Update this to match your namespace
+        minSdkVersion 21
+        targetSdkVersion 34 // Update to match compileSdkVersion
+        versionCode 1
+        versionName "1.0"
     }
 }
 
-rootProject.buildDir = "../build"
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(":app")
+repositories {
+    google()
+    mavenCentral()
 }
 
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+dependencies {
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22" // Define Kotlin version directly here
+    // Add any other dependencies here
 }
-plugins {
-  // ...
 
-  // Add the dependency for the Google services Gradle plugin
-  id 'com.google.gms.google-services' version '4.4.2' apply false
-
-}
+apply plugin: 'com.android.application'
