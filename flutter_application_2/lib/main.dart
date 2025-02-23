@@ -112,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const Text('This is a text with a custom style'),
           ],
         ),
       ),
