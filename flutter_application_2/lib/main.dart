@@ -113,6 +113,10 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const Text('This is a text with a custom style'),
+            Text(
+              'This is a text with a custom style',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
           ],
         ),
       ),
